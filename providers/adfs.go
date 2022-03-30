@@ -77,16 +77,18 @@ func (p *ADFSProvider) GetLoginURL(redirectURI, state, nonce string, extraParams
 // EnrichSession calls the OIDC ProfileURL to backfill any fields missing
 // from the claims. If Email is missing, falls back to ADFS `upn` claim.
 func (p *ADFSProvider) EnrichSession(ctx context.Context, s *sessions.SessionState) error {
+	
 	err := p.oidcEnrichFunc(ctx, s)
-	if err != nil || s.Email == "" {
-		// OIDC only errors if email is missing
-		return p.fallbackUPN(ctx, s)
-	}
 	if len(s.Groups) > 0 {
            fmt.Println("djkormo -> Found groups: ",s.Groups)
 	} else {
 	  fmt.Println("djkormo -> No groups for emai: ",s.Email)
-	}	
+	}
+	if err != nil || s.Email == "" {
+		// OIDC only errors if email is missing
+		return p.fallbackUPN(ctx, s)
+	}
+	
 	return nil
 }
 
