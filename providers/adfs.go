@@ -98,7 +98,8 @@ func (p *ADFSProvider) RefreshSession(ctx context.Context, s *sessions.SessionSt
 
 func (p *ADFSProvider) fallbackUPN(ctx context.Context, s *sessions.SessionState) error {
 	claims, err := p.getClaimExtractor(s.IDToken, s.AccessToken)
-	fmt.Println("djkormo -> Access Token: %s",&s)
+	fmt.Println("djkormo -> Access Token: %s",s.AccessToken)
+	fmt.Println("djkormo -> Claims: %s",claims)
 	if err != nil {
 		return fmt.Errorf("could not extract claims: %v", err)
 	}
