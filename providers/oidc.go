@@ -151,8 +151,7 @@ func (p *OIDCProvider) redeemRefreshToken(ctx context.Context, s *sessions.Sessi
 		s.Email = newSession.Email
 		s.User = newSession.User
 		s.Groups = newSession.Groups
-//		s.PreferredUsername = newSession.PreferredUsername
-		s.PreferredUsername = newSession.User
+		s.PreferredUsername = newSession.PreferredUsername
 	}
 
 	s.AccessToken = newSession.AccessToken
