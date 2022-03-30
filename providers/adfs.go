@@ -85,6 +85,9 @@ func (p *ADFSProvider) EnrichSession(ctx context.Context, s *sessions.SessionSta
 	if len(s.Groups) > 0 {
            fmt.Println("djkormo -> Found groups: ",s.Groups)
 	}
+	else {
+	  fmt.Println("djkormo -> No groups for emai: ",s.Email)
+	}	
 	return nil
 }
 
