@@ -3,11 +3,11 @@ name: Dockerhub push
 on:
   push:
     paths:
-      - 'charts/*.yaml'
-      - 'deploy/*.yaml'
-      - 'test/*.yaml'
-      - '**.bash'
-      - '**.py'
+      - 'providers/**.go'
+      - 'pkg/**.go'
+      - 'contrib/*.go'
+      - '**.go'
+      - '**.go'
       - 'Dockerfile'
 
 jobs:
