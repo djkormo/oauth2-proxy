@@ -100,8 +100,6 @@ func (p *ADFSProvider) fallbackUPN(ctx context.Context, s *sessions.SessionState
 	claims, err := p.getClaimExtractor(s.IDToken, s.AccessToken)
 	fmt.Println("djkormo -> Access Token: ",s.AccessToken)
 	fmt.Println("djkormo -> Claims: ",&claims)
-	fmt.Println("djkormo -> users: ",&claims.upn)
-	fmt.Println("djkormo -> groups: ",&claims.groups)
 	if err != nil {
 		return fmt.Errorf("could not extract claims: %v", err)
 	}
