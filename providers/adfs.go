@@ -80,9 +80,10 @@ func (p *ADFSProvider) EnrichSession(ctx context.Context, s *sessions.SessionSta
 	
 	err := p.oidcEnrichFunc(ctx, s)
 	if len(s.Groups) > 0 {
+	   fmt.Println("djkormo -> Found email: ",s.Email)
            fmt.Println("djkormo -> Found groups for email: ",s.Groups)
 	} else {
-	  fmt.Println("djkormo -> No groups for emai: ",s.Email)
+	  fmt.Println("djkormo -> No groups for email: ",s.Email)
 	}
 	if err != nil || s.Email == "" ||  len(s.Groups) == 0 {
 		// OIDC only errors if email is missing
@@ -106,7 +107,8 @@ func (p *ADFSProvider) RefreshSession(ctx context.Context, s *sessions.SessionSt
 func (p *ADFSProvider) fallbackUPN(ctx context.Context, s *sessions.SessionState) error {
 	claims, err := p.getClaimExtractor(s.IDToken, s.AccessToken)
 	fmt.Println("djkormo -> Access Token: ",s.AccessToken)
-	fmt.Println("djkormo -> Claims: ",&claims)
+	fmt.Println("djkormo -> Found groups for email: ",s.Groups)
+	fmt.Println("djkormo -> Email: ",s.Email)
 	if err != nil {
 		return fmt.Errorf("could not extract claims: %v", err)
 	}
