@@ -767,7 +767,7 @@ func (p *OAuthProxy) OAuthCallback(rw http.ResponseWriter, req *http.Request) {
 	if err != nil {
 		logger.Errorf("Error redeeming code during OAuth2 callback: %v", err)
 		p.ErrorPage(rw, req, http.StatusInternalServerError, err.Error())
-//		return
+		return
 	}
 
 	err = p.enrichSessionState(req.Context(), session)
