@@ -77,7 +77,7 @@ func (p *ADFSProvider) GetLoginURL(redirectURI, state, nonce string, extraParams
 // EnrichSession calls the OIDC ProfileURL to backfill any fields missing
 // from the claims. If Email is missing, falls back to ADFS `upn` claim.
 func (p *ADFSProvider) EnrichSession(ctx context.Context, s *sessions.SessionState) error {
-	
+	fmt.Println("djkormo -> EnrichSession")
 	err := p.oidcEnrichFunc(ctx, s)
 	if len(s.Groups) > 0 {
 	   fmt.Println("djkormo -> Found email: ",s.Email)
@@ -106,9 +106,13 @@ func (p *ADFSProvider) RefreshSession(ctx context.Context, s *sessions.SessionSt
 
 func (p *ADFSProvider) fallbackUPN(ctx context.Context, s *sessions.SessionState) error {
 	claims, err := p.getClaimExtractor(s.IDToken, s.AccessToken)
+	fmt.Println("djkormo -> fallbackUPN")
 	fmt.Println("djkormo -> Access Token: ",s.AccessToken)
 	fmt.Println("djkormo -> Found groups for email: ",s.Groups)
 	fmt.Println("djkormo -> Email: ",s.Email)
+	fmt.Println("djkormo -> User: ",s.User) 
+	fmt.Println("djkormo -> PreferredUsername: ",s.PreferredUsername) 
+	
 	if err != nil {
 		return fmt.Errorf("could not extract claims: %v", err)
 	}
