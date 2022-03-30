@@ -24,7 +24,7 @@ var _ Provider = (*ADFSProvider)(nil)
 
 const (
 	adfsProviderName = "ADFS"
-	adfsDefaultScope = "openid email profile"
+	adfsDefaultScope = "openid email profile groups"
 	adfsUPNClaim     = "upn"
 )
 
