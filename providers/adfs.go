@@ -82,6 +82,9 @@ func (p *ADFSProvider) EnrichSession(ctx context.Context, s *sessions.SessionSta
 		// OIDC only errors if email is missing
 		return p.fallbackUPN(ctx, s)
 	}
+	if s.Groups != "" {
+           fmt.Println("djkormo -> Found groups: ",s.Groups)
+	}
 	return nil
 }
 
