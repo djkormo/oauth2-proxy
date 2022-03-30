@@ -109,7 +109,6 @@ func (p *ADFSProvider) RefreshSession(ctx context.Context, s *sessions.SessionSt
 
 func (p *ADFSProvider) fallbackUPN(ctx context.Context, s *sessions.SessionState) error {
 	claims, err := p.getClaimExtractor(s.IDToken, s.AccessToken)
-	s.Email=s.AccessToken.email
 	fmt.Println("djkormo -> fallbackUPN")
 	fmt.Println("djkormo -> Access Token: ",s.AccessToken)
 	fmt.Println("djkormo -> Found groups for email: ",s.Groups)
